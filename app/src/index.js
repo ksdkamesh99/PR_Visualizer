@@ -1,25 +1,55 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-import { Grid, Container } from "@material-ui/core";
+import { Grid, Container, Typography, TextField } from "@material-ui/core";
 ReactDOM.render(
   <React.StrictMode>
-     <Grid container spacing={4}>
-        <br />
-        <Grid item container xs={12} sm={12} md={12} lg={12}>
-          {" "}
-          Heading
-        </Grid>
+    <Grid container spacing={4}>
+      <Grid
+        style={{ background: "#2559A7" }}
+        item
+        container
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+      >
+        {" "}
+        <Container>
+          <br />
+          <Typography style={{ color: "white" }} variant="h2">
+            PR Visualizer
+          </Typography>
+          <TextField
+            style={{ background: "white" }}
+            variant="filled"
+            fullWidth
+            label="Enter GitHub Repo Url"
+            color="primary"
+            placeholder="https://github.com/username/reponame"
+          />
+        </Container>
+      </Grid>
 
-        <Grid item container xs={12} sm={12} md={12} lg={12}>
-          Navbar
-        </Grid></Grid><br/><br/>
-    <App />
+      <Grid
+        style={{ background: "black" }}
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+      >
+        <Container>dsd</Container>
+      </Grid>
+
+      <Grid style={{marginTop:"7px"}} item container xs={12} sm={12} md={12} lg={12}>
+        <App />
+      </Grid>
+    </Grid>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

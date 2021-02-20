@@ -12,7 +12,7 @@ const PRBox=(props)=>{
     linkFontColor} = config
     return(
         <>
-        <Grid container spacing={3} style={{border:'1px solid black',borderRadius:'5px',padding:"22px",backgroundColor:BoxColor}}>
+        <Grid container spacing={1} style={{border:'1px solid black',borderRadius:'5px',padding:"22px",backgroundColor:BoxColor}}>
             <Grid  item sm={12} xs={12} md={12} lg={12} id ="PRHeading">
             <span id="PRno">#{number} </span><span>{title}</span>
             </Grid>
