@@ -11,14 +11,14 @@ const PieChart = (props) => {
       {
         data: [merge,open,close],
         backgroundColor: [merged, opened, closed],
-        borderColor: [merged, opened, closed],
+        borderColor: ["black","black","black"],
         borderWidth: 2,
       },
     ],
   };
   return <>
   <Box style={{background:container, border:'1px solid black',borderRadius:'5px'}}><br/>
-  <Pie style={{margin:'-15px'}} data={data}/><br/>
+  <Pie style={{margin:'0px'}} data={data}/><br/>
   </Box>
   </>;
 };

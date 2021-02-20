@@ -17,26 +17,37 @@ ReactDOM.render(
         lg={12}
       >
         {" "}
-        <Container><br/>
-        <Typography style={{color:'white'}} variant="h2">PR Visualizer</Typography>
-        <TextField 
-        style={{background:"white"}}
-        variant="filled" 
-        fullWidth 
-        label="Enter GitHub Repo Url" 
-        color="primary"
-        placeholder="https://github.com/username/reponame"
-        />
+        <Container>
+          <br />
+          <Typography style={{ color: "white" }} variant="h2">
+            PR Visualizer
+          </Typography>
+          <TextField
+            style={{ background: "white" }}
+            variant="filled"
+            fullWidth
+            label="Enter GitHub Repo Url"
+            color="primary"
+            placeholder="https://github.com/username/reponame"
+          />
         </Container>
       </Grid>
 
-      <Grid item container xs={12} sm={12} md={12} lg={12}>
-        Navbar
+      <Grid
+        style={{ background: "black" }}
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+      >
+        <Container>dsd</Container>
+      </Grid>
+
+      <Grid style={{marginTop:"7px"}} item container xs={12} sm={12} md={12} lg={12}>
+        <App />
       </Grid>
     </Grid>
-    <br />
-    <br />
-    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
