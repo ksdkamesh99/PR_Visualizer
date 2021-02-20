@@ -26,8 +26,11 @@ const AppContainer = () =>{
             PR Visualizer
           </Typography>
           <TextField
+<<<<<<< HEAD
             value={url}
             onChange={(e)=>{setUrl(e.target.value)}}
+=======
+>>>>>>> 7aa7ba1f9512b79286336d21dd2e7be5f6ae4ec7
             style={{ background: "white" }}
             variant="filled"
             fullWidth
@@ -49,6 +52,7 @@ const AppContainer = () =>{
         <Container>dsd</Container>
       </Grid>
 
+<<<<<<< HEAD
       <Grid
         style={{ marginTop: "7px" }}
         item
@@ -66,6 +70,12 @@ const AppContainer = () =>{
 ReactDOM.render(
   <React.StrictMode>
     <AppContainer/>
+=======
+      <Grid style={{marginTop:"7px"}} item container xs={12} sm={12} md={12} lg={12}>
+        <App />
+      </Grid>
+    </Grid>
+>>>>>>> 7aa7ba1f9512b79286336d21dd2e7be5f6ae4ec7
   </React.StrictMode>,
   document.getElementById("root")
 );
