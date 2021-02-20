@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import { Grid, Container, Typography } from "@material-ui/core";
+import { Grid, Container, Typography, TextField } from "@material-ui/core";
 ReactDOM.render(
   <React.StrictMode>
     <Grid container spacing={4}>
@@ -20,7 +19,15 @@ ReactDOM.render(
         {" "}
         <Container><br/>
         <Typography style={{color:'white'}} variant="h2">PR Visualizer</Typography>
-              </Container>
+        <TextField 
+        style={{background:"white"}}
+        variant="filled" 
+        fullWidth 
+        label="Enter GitHub Repo Url" 
+        color="primary"
+        placeholder="https://github.com/username/reponame"
+        />
+        </Container>
       </Grid>
 
       <Grid item container xs={12} sm={12} md={12} lg={12}>
