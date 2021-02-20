@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
-import { Grid, Container, Typography, TextField } from "@material-ui/core";
-const AppContainer = () =>{
-  const [url,setUrl] = useState('')
-
-  return(
-
+import UrltoAPI from './utils/urltoapi'
+import {
+  Grid,
+  Container,
+  Typography,
+  TextField,
+  Button,
+} from "@material-ui/core";
+const AppContainer = () => {
+  const [url, setUrl] = useState("");
+  const [api,setAPI] = useState("");
+  // const data = useGitHubAPI(api);
+  return (
     <Grid container spacing={4}>
       <Grid
         style={{ background: "#2559A7" }}
@@ -27,14 +33,22 @@ const AppContainer = () =>{
           </Typography>
           <TextField
             value={url}
-            onChange={(e)=>{setUrl(e.target.value)}}
+            onChange={(e) => {
+              setUrl(e.target.value);
+            }}
             style={{ background: "white" }}
             variant="filled"
             fullWidth
             label="Enter GitHub Repo Url"
             color="primary"
             placeholder="https://github.com/username/reponame"
-          />
+          /><br/><br/>
+          <Button 
+          variant="contained"
+          onClick={()=>{setAPI(UrltoAPI(url))}}
+          >
+            Visualize
+          </Button>
         </Container>
       </Grid>
 
@@ -58,14 +72,15 @@ const AppContainer = () =>{
         md={12}
         lg={12}
       >
+        <h1>{api}</h1>
         <App />
       </Grid>
     </Grid>
-
-)};
+  );
+};
 ReactDOM.render(
   <React.StrictMode>
-    <AppContainer/>
+    <AppContainer />
   </React.StrictMode>,
   document.getElementById("root")
 );
@@ -73,3 +88,7 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+
+
