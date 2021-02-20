@@ -19,7 +19,14 @@ ReactDOM.render(
         {" "}
         <Container><br/>
         <Typography style={{color:'white'}} variant="h2">PR Visualizer</Typography>
-        <TextField variant="filled" fullWidth label="Enter GitHub Repo Url" color="primary"/>
+        <TextField 
+        style={{background:"white"}}
+        variant="filled" 
+        fullWidth 
+        label="Enter GitHub Repo Url" 
+        color="primary"
+        placeholder="https://github.com/username/reponame"
+        />
         </Container>
       </Grid>
 
