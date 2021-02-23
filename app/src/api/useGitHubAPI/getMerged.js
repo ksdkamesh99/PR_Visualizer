@@ -1,6 +1,6 @@
-import axios from "axios";
+import Axios from "axios";
 
-const getAll = async (url) => {
+const getMerged = async (url) => {
     const config = {
       method: "GET",
       url:`${url}?state=merged`,
@@ -8,12 +8,21 @@ const getAll = async (url) => {
         Accept: "application/vnd.github.v3+json",
       },
     };
-    let res = await Axios(config)
-    let {data} = res;
-    return Promise.all(data)
+    try {
+      Axios(config)
+        .then((res) => {
+          console.log(res.data);
+          return res.data;
+        })
+        .catch((e) => {
+          return e;
+        });
+    } catch (e) {
+      return e;
+    }
   };
 
-export default getAll;
+export default getMerged;
 // axios(config)
 // .then(function (response) {
 //   console.log(JSON.stringify(response.data));
