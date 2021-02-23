@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -13,8 +13,19 @@ import {
 } from "@material-ui/core";
 const AppContainer = () => {
   const [url, setUrl] = useState("https://github.com/Tech-Phantoms/Tech_Phantoms_website");
-  const [api,setAPI] = useState("");
-  const [data,setData] = useState("")
+  const [api, setApi] = useState("");
+  const [data, setData] = useState("")
+
+
+  useEffect(() => {
+    setData(getAll(api));
+  }, [api]);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+
   // const data = useGitHubAPI(api);
   return (
     <Grid container spacing={4}>
@@ -48,9 +59,7 @@ const AppContainer = () => {
           <Button 
           variant="contained"
           onClick={()=>{
-            setAPI(UrltoAPI(url))
-            setData(getAll(api))
-            console.log(data)
+            setApi(UrltoAPI(url));
           }}
           >
             Visualize

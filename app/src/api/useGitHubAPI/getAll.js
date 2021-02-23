@@ -3,7 +3,7 @@ import Axios from "axios";
 const getAll = (url) => {
   const config = {
     method: "GET",
-    url: `${url}?state=all`,
+    url: `${url}`,
     headers: {
       Accept: "application/vnd.github.v3+json",
     },
