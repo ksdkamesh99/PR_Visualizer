@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import UrltoAPI from './utils/urltoapi';
-import getAll from './api/useGitHubAPI/getAll'
+import Axios from "axios";
+
 import {
   Grid,
   Container,
@@ -12,20 +13,70 @@ import {
   Button,
 } from "@material-ui/core";
 const AppContainer = () => {
-  const [url, setUrl] = useState("https://github.com/Tech-Phantoms/Tech_Phantoms_website");
-  const [api, setApi] = useState("");
-  const [data, setData] = useState("")
+  const [url, setUrl] = useState("https://github.com/MLH-Fellowship/portfolio-template");
+  const [api, setApi] = useState("https://api.github.com/repos/MLH-Fellowship/portfolio-template/pulls");
+  const [data, setData] = useState("init data");
 
 
   useEffect(() => {
-    setData(getAll(api));
+    getData(api, "open");
   }, [api]);
 
   useEffect(() => {
-    console.log(data);
+    // display pull request!
+    alert('DATA SET');
   }, [data]);
 
+  const makeCall = (page, prs_holder, prState) => {
+    const config = {
+      method: "GET",
+      url: `${api}?state=${prState}&page=${page}`,
+      headers: {
+        Accept: "application/vnd.github.v3+json",
+        // Authorization: "", will need oauth later for higher api calls limit
+      },
+    };
 
+    try {
+      Axios(config)
+        .then((res) => {
+          let data = res.data;
+          if(data == undefined || data.length == 0) // ie empty
+          {
+            // no more data here
+            setData(prs_holder);
+          }
+          else
+          {
+              console.log('retrieved prs with lenght = ' + data.length);
+              for(let i = 0; i < data.length; i++)
+              {
+                let pr = data[i];
+                let new_pr = {
+                  "title": pr["title"],
+                  "url": pr["url"],
+                  "state": pr["state"],
+                  // add all properties you need
+                };
+                prs_holder.push(new_pr);
+              }
+              if(page == 2)
+                return;
+              makeCall(page + 1, prs_holder, prState);
+              
+          }
+        })
+        .catch((e) => {
+          return e;
+        });
+    } catch (e) {
+      return e;
+    }
+  }
+
+const getData = (prState) => {
+    makeCall(1, [], prState);
+  };
   // const data = useGitHubAPI(api);
   return (
     <Grid container spacing={4}>
