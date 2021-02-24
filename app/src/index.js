@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios"
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import UrltoAPI from './utils/urltoapi'
+import UrltoAPI from './utils/urltoapi';
+
+import getAll from './api/githubAPI/getAll'
+
 import {
   Grid,
   Container,
@@ -13,6 +17,13 @@ import {
 const AppContainer = () => {
   const [url, setUrl] = useState("");
   const [api,setAPI] = useState("");
+  const [data,setData] = useState(null);
+
+  const fetchData = async () => {
+    const response = await getAll(api)
+    console.log(response)
+    setData(response) 
+  }
   // const data = useGitHubAPI(api);
   return (
     <Grid container spacing={4}>
@@ -25,7 +36,6 @@ const AppContainer = () => {
         md={12}
         lg={12}
       >
-        {" "}
         <Container>
           <br />
           <Typography style={{ color: "white" }} variant="h2">
@@ -45,7 +55,13 @@ const AppContainer = () => {
           /><br/><br/>
           <Button 
           variant="contained"
-          onClick={()=>{setAPI(UrltoAPI(url))}}
+          onClick={()=>{
+            setAPI(UrltoAPI(url))
+            if(api)
+            {
+              fetchData();
+            }
+          }}
           >
             Visualize
           </Button>
@@ -71,12 +87,12 @@ const AppContainer = () => {
         sm={12}
         md={12}
         lg={12}
-      >
-        <h1>{api}</h1>
-        <App />
+      > 
+        {data && (<App data={data}/>)}
       </Grid>
     </Grid>
   );
+ 
 };
 ReactDOM.render(
   <React.StrictMode>
