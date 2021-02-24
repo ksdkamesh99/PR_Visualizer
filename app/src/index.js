@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import UrltoAPI from './utils/urltoapi';
-import Axios from "axios";
+import makeApiCall from './api/useGitHubAPI/getAll'
 
 import {
   Grid,
@@ -19,64 +19,13 @@ const AppContainer = () => {
 
 
   useEffect(() => {
-    getData(api, "open");
+    makeApiCall(api, "open", setData);
   }, [api]);
 
   useEffect(() => {
-    // display pull request!
-    alert('DATA SET');
+    
   }, [data]);
 
-  const makeCall = (page, prs_holder, prState) => {
-    const config = {
-      method: "GET",
-      url: `${api}?state=${prState}&page=${page}`,
-      headers: {
-        Accept: "application/vnd.github.v3+json",
-        // Authorization: "", will need oauth later for higher api calls limit
-      },
-    };
-
-    try {
-      Axios(config)
-        .then((res) => {
-          let data = res.data;
-          if(data == undefined || data.length == 0) // ie empty
-          {
-            // no more data here
-            setData(prs_holder);
-          }
-          else
-          {
-              console.log('retrieved prs with lenght = ' + data.length);
-              for(let i = 0; i < data.length; i++)
-              {
-                let pr = data[i];
-                let new_pr = {
-                  "title": pr["title"],
-                  "url": pr["url"],
-                  "state": pr["state"],
-                  // add all properties you need
-                };
-                prs_holder.push(new_pr);
-              }
-              if(page == 2)
-                return;
-              makeCall(page + 1, prs_holder, prState);
-              
-          }
-        })
-        .catch((e) => {
-          return e;
-        });
-    } catch (e) {
-      return e;
-    }
-  }
-
-const getData = (prState) => {
-    makeCall(1, [], prState);
-  };
   // const data = useGitHubAPI(api);
   return (
     <Grid container spacing={4}>
@@ -106,12 +55,12 @@ const getData = (prState) => {
             label="Enter GitHub Repo Url"
             color="primary"
             placeholder="https://github.com/username/reponame"
-          /><br/><br/>
-          <Button 
-          variant="contained"
-          onClick={()=>{
-            setApi(UrltoAPI(url));
-          }}
+          /><br /><br />
+          <Button
+            variant="contained"
+            onClick={() => {
+              setApi(UrltoAPI(url));
+            }}
           >
             Visualize
           </Button>
