@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios"
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import UrltoAPI from './utils/urltoapi';
-import axios from 'axios'
+
 import getAll from './api/githubAPI/getAll'
 
 import {
