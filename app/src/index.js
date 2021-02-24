@@ -3,7 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import UrltoAPI from './utils/urltoapi';
-import getAll from './api/useGitHubAPI/getAll'
+import axios from 'axios'
+import getAll from './api/githubAPI/getAll'
+
 import {
   Grid,
   Container,
@@ -12,9 +14,15 @@ import {
   Button,
 } from "@material-ui/core";
 const AppContainer = () => {
-  const [url, setUrl] = useState("https://github.com/Tech-Phantoms/Tech_Phantoms_website");
+  const [url, setUrl] = useState("");
   const [api,setAPI] = useState("");
-  const [data,setData] = useState("")
+  const [data,setData] = useState(null);
+
+  const fetchData = async () => {
+    const response = await getAll(api)
+    console.log(response)
+    setData(response) 
+  }
   // const data = useGitHubAPI(api);
   return (
     <Grid container spacing={4}>
@@ -27,7 +35,6 @@ const AppContainer = () => {
         md={12}
         lg={12}
       >
-        {" "}
         <Container>
           <br />
           <Typography style={{ color: "white" }} variant="h2">
@@ -49,8 +56,10 @@ const AppContainer = () => {
           variant="contained"
           onClick={()=>{
             setAPI(UrltoAPI(url))
-            setData(getAll(api))
-            console.log(data)
+            if(api)
+            {
+              fetchData();
+            }
           }}
           >
             Visualize
@@ -77,12 +86,12 @@ const AppContainer = () => {
         sm={12}
         md={12}
         lg={12}
-      >
-        <h1>{data}</h1>
-        <App />
+      > 
+        {data && (<App data={data}/>)}
       </Grid>
     </Grid>
   );
+ 
 };
 ReactDOM.render(
   <React.StrictMode>
