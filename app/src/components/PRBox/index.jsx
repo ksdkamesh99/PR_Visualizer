@@ -1,8 +1,24 @@
 import React from "react";
 import config from "./color.config";
-import { Box, Grid } from "@material-ui/core";
+import _ from 'lodash'
+import GroupStore from './../../data/group'
+import { Box, Button, Checkbox, Grid } from "@material-ui/core";
+import temp from './../../data/selected'
 const PRBox = (props) => {
+  const showGroupList=(number,status,githublink)=>{
+           
+    
+    return(  GroupStore.map((el,index)=>{
+                <Button variant="outlined" key={index}>
+                    {el.name}
+                </Button>
+            }))
+  }
+
+
+
   const { title, number, status, opened, comments, githublink, tags } = props;
+
   var {
     BoxColor,
     StatusColor,
@@ -34,7 +50,7 @@ const PRBox = (props) => {
         }}
       >
         <Grid item sm={12} xs={12} md={12} lg={12} id="PRHeading">
-          <span id="PRno">
+          <span id={number}>
             <b>#{number}</b>{" "}
           </span>
           <span>{title}</span>
@@ -74,19 +90,45 @@ const PRBox = (props) => {
             Total Comments: {comments}
           </Grid>
         </Grid>
-        <Grid container item sm={4} xs={4} md={4} lg={4} id="link">
+        <Grid container item sm={4} xs={4} md={7} lg={7} id="link">
           <Grid
-            item
+            item xs={12} sm={12} md={5} lg={5}
             style={{
               padding: "10px",
               backgroundColor: linkColor,
               color: linkFontColor,
+              marginRight:'4px'
             }}
           >
             <a href={githublink} style={{ color: linkFontColor }}>
               View on GitHub
             </a>
           </Grid>
+          <Grid
+            item xs={12} sm={12} md={6} lg={6}
+           
+          >
+           <Checkbox
+           color="primary"
+            name="Select to group" 
+            onChange={(e)=>{
+                    const checkedPR = {number: number, link:githublink, status: status  }
+                    if(e.target.checked)
+                        {
+                        temp.push(checkedPR)
+                            console.log(temp)
+                    }
+                    else{
+                        _.remove(temp,(el)=>{ return el.number===checkedPR.number})
+                    console.log(temp)                        
+                    }
+            }}
+            />
+Select to Group
+          
+          </Grid>
+
+          
         </Grid>
       </Grid>
     </>
