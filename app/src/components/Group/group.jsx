@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from '@material-ui/core'
+import { Grid, Box } from '@material-ui/core'
 
 
 const GroupPRs =(props)=>{
@@ -17,7 +17,7 @@ const GroupPRs =(props)=>{
                         return(
                         <Grid item xs={4} sm={4} md={4} lg={4}>
                         <Box style={{border:'1px solid black', padding:'4px'}}>
-                            {number}
+                          <a target="_blank" href={el.link}>  {el.number}</a>
                         </Box>
                         </Grid>)
                     })
