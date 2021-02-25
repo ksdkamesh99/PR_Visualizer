@@ -57,7 +57,7 @@ const AppContainer = () => {
           variant="contained"
           onClick={()=>{
             setAPI(UrltoAPI(url))
-            if(api)
+            if(api && url)
             {
               fetchData();
             }

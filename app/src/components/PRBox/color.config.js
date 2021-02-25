@@ -1,5 +1,5 @@
 const colorConfig={
-    BoxColor:"#F5F1F1",
+    BoxColor:"#d0f08b",
     StatusColor:"#83FC8F",
     OpenColor:"#58D7FF",
     CommentColor:"#FFBC58",
