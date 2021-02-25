@@ -1,3 +1,3 @@
 import PRBox from './PRBox'
-
-export {PRBox};
+import PieChart from './piechart'
+export {PRBox,PieChart};
