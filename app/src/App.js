@@ -27,11 +27,11 @@ const App = (props) => {
       return el.state ==="closed" && (el.merged_at === null);
     }).length;
 
-    let _totalMerged = _.filter(data, (el) => {
-      return el.state === "closed" && (el.merged_at != null);
+    let _totalMerged = _.filter(prData, (el) => {
+      return el.state === "closed" && (el.merged_at !== null);
     }).length;
 
-    let _totalOpen = _.filter(data, (el) => {
+    let _totalOpen = _.filter(prData, (el) => {
       return el.state ==="open";
     }).length;
 
