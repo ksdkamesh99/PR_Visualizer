@@ -28,9 +28,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: checkout to the app directory
-        run: cd app/
-
       # Build
-      - name: Build React-App
-        run: npm run build
+      - name: Build PR_Visualizer
+        run: |
+          cd app/ 
+          npm run build
