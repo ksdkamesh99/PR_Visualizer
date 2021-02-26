@@ -101,7 +101,7 @@ const PRBox = (props) => {
               marginRight:'4px'
             }}
           >
-            <a href={githublink} style={{ color: linkFontColor }}>
+            <a href={githublink} target="_blank" style={{ color: linkFontColor }}>
               View on GitHub
             </a>
           </Grid>
