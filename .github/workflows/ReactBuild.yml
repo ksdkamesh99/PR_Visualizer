@@ -5,7 +5,7 @@ on:
   push:
     branches: [ main, staging, development, workflow-test ]
   pull_request:
-    branches: [ main, staging, development, workflow-test  ]
+    branches: [ main, staging, development, workflow-test ]
 
   # Enable manual run from the actions tab
   workflow_dispatch:
@@ -16,19 +16,21 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [15.8]
+
     steps:
       # Get the repo to enable access by the job
       - uses: actions/checkout@v2
-      - name: Install node
 
+      # Install Node
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: checkout to the app directory
-        run: cd app/
-
-      - name: Build React-App
-        run: npm run build
+      # Build
+      - name: Build PR_Visualizer
+        run: |
+          cd app/ 
+          npm install
+          npm run build
