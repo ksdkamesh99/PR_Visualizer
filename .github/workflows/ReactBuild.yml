@@ -16,11 +16,11 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [15.8]
+
     steps:
       # Get the repo to enable access by the job
       - uses: actions/checkout@v2
-      - name: Install node
 
       # Install Node
       - name: Use Node.js ${{ matrix.node-version }}
