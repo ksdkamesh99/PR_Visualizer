@@ -14,16 +14,35 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
+
+const intialContainerState = {
+    url: "",
+    api: "",
+    data: null,
+}
+
 const AppContainer = () => {
+
   const [url, setUrl] = useState("");
   const [api,setAPI] = useState("");
   const [data,setData] = useState(null);
+
+  const resetState = () => {
+    setUrl(intialContainerState.url);
+    setAPI(intialContainerState.api);
+    setData(intialContainerState.data);
+  }
 
   const fetchData = async () => {
     const response = await getAll(api)
     console.log(response)
     setData(response) 
   }
+
+  useEffect( () => {
+      if(api) // if set upon button click
+        fetchData();
+  }, [api])
   // const data = useGitHubAPI(api);
   return (
     <Grid container spacing={4}>
@@ -56,11 +75,10 @@ const AppContainer = () => {
           <Button 
           variant="contained"
           onClick={()=>{
+            let tmpUrl = {url};
+            resetState();
+            setUrl(url);
             setAPI(UrltoAPI(url))
-            if(api && url)
-            {
-              fetchData();
-            }
           }}
           >
             Visualize

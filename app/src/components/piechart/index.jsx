@@ -6,7 +6,7 @@ const PieChart = (props) => {
   const { merge,open,close } = props; //count
   const { merged, opened, closed,container } = colorConfig; //colors
   const data = {
-    labels: ["Merged", "Open", "Closed"],
+    labels: [`${merge} Merged`, `${open} Open`, `${close} Closed`],
     datasets: [
       {
         data: [merge,open,close],

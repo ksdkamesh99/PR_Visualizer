@@ -13,10 +13,16 @@ const GroupPRs =(props)=>{
            <Grid container>
                 {
                     prList.map((el)=>{
-                        
+                        let BoxColor=''
+                        if(el.status==="Merged")
+                        BoxColor = "#fc7e7c";
+                        if(el.status==="Closed")
+                        BoxColor = "#b795fc";
+                        if(el.status==='Open')
+                        BoxColor = "#d0f08b"; 
                         return(
                         <Grid item xs={4} sm={4} md={4} lg={4}>
-                        <Box style={{border:'1px solid black', padding:'4px'}}>
+                        <Box style={{background:BoxColor,border:'1px solid black', padding:'4px'}}>
                           <a target="_blank" href={el.link}>  {el.number}</a>
                         </Box>
                         </Grid>)
