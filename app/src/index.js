@@ -24,6 +24,11 @@ const AppContainer = () => {
     console.log(response)
     setData(response) 
   }
+
+  useEffect( () => {
+      if(api) // if set upon button click
+        fetchData();
+  }, [api])
   // const data = useGitHubAPI(api);
   return (
     <Grid container spacing={4}>
@@ -57,10 +62,6 @@ const AppContainer = () => {
           variant="contained"
           onClick={()=>{
             setAPI(UrltoAPI(url))
-            if(api && url)
-            {
-              fetchData();
-            }
           }}
           >
             Visualize
