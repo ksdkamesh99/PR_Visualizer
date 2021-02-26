@@ -1,5 +1,7 @@
 # PR Visualizer
-
+[![Build Status](https://github.com/imabp/PR_Visualizer/actions/workflows/ReactBuild.yml/badge.svg)]
+[![Website shields.io](https://img.shields.io/github/issues/Swift-Megaminds/swift-megaminds-portfolio?style=flat-square)]
+[![GitHub license](https://img.shields.io/github/license/imabp/PR_Visualizer?style=flat-square)]
 ## Inspiration:
 
 Github has grown to become the most popular repositories host worldwide where most open source projects developement take place, developpers around the world are able to contribute their code by submitting pull requests.
