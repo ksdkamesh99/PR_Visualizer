@@ -38,7 +38,7 @@ const App = (props) => {
     setTotalClosed(_totalClosed);
     setTotalMerged(_totalMerged);
     setTotalOpen(_totalOpen);
-    
+
   },[prData])
 
   const displayAll = () => {
@@ -58,7 +58,7 @@ const App = (props) => {
 
   const displayMerged = () => {
     var mergeData = _.filter(data, (el) => {
-      return el.state === "merged" && el.merged_at !== null;
+      return el.state === "closed" && el.merged_at !== null;
     });
     setPrData(mergeData);
     setDataVisibility(true);
