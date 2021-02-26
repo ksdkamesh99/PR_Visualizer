@@ -78,7 +78,8 @@ const PRBox = (props) => {
           >
             Opened on: {opened}
           </Grid>
-          <Grid
+          {/* Feature to be implemented */}
+          {/* <Grid
             item
             xs={12}
             md={4}
@@ -87,8 +88,8 @@ const PRBox = (props) => {
             id="comments"
             style={{ padding: "10px", backgroundColor: CommentColor }}
           >
-            Total Comments: {comments}
-          </Grid>
+           Reviewers: {comments}
+          // </Grid> */} 
         </Grid>
         <Grid container item sm={4} xs={4} md={7} lg={7} id="link">
           <Grid
