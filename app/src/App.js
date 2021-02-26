@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PRBox, PieChart } from "./components";
 import { Grid, Container, Button, TextField } from "@material-ui/core";
 import _, { set } from "lodash";
@@ -16,6 +16,31 @@ const App = (props) => {
   const [groupStatus,setGroupStatus] = useState(false)
   const [errorSelection,setErrorSelection] = useState(false)
   const [displayGroups,setDisplayGroups] = useState(false)
+
+  const [totalMerged, setTotalMerged] = useState(3)
+  const [totalClosed, setTotalClosed] = useState(3)
+  const [totalOpen, setTotalOpen] = useState(4)
+
+
+  useEffect(() => {
+    let _totalClosed = _.filter(prData, (el) => {
+      return el.state ==="closed" && (el.merged_at === null);
+    }).length;
+
+    let _totalMerged = _.filter(prData, (el) => {
+      return el.state === "closed" && (el.merged_at !== null);
+    }).length;
+
+    let _totalOpen = _.filter(prData, (el) => {
+      return el.state ==="open";
+    }).length;
+
+    setTotalClosed(_totalClosed);
+    setTotalMerged(_totalMerged);
+    setTotalOpen(_totalOpen);
+
+  },[prData])
+
   const displayAll = () => {
     setPrData(data);
     setDataVisibility(true);
@@ -220,7 +245,7 @@ const App = (props) => {
           {datavisibility && <Grid item container xs={12} sm={12} md={5} lg={5}>
             <Grid item xs={12} md={12} sm={12} lg={12}>
              
-              <PieChart merge={5} open={5} close={5} />
+              <PieChart merge={totalMerged} open={totalOpen} close={totalClosed} />
             </Grid>
           </Grid>}  
           {
