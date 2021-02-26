@@ -5,7 +5,7 @@ on:
   push:
     branches: [ main, staging, development, workflow-test ]
   pull_request:
-    branches: [ main, staging, development, workflow-test  ]
+    branches: [ main, staging, development, workflow-test ]
 
   # Enable manual run from the actions tab
   workflow_dispatch:
@@ -22,6 +22,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install node
 
+      # Install Node
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@master
         with:
@@ -30,5 +31,6 @@ jobs:
       - name: checkout to the app directory
         run: cd app/
 
+      # Build
       - name: Build React-App
         run: npm run build
