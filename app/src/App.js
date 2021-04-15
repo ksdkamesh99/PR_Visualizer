@@ -65,6 +65,7 @@ const App = (props) => {
     setShowGroupedPRs(false)
   };
   const createNewGroup=(name)=>{
+    // If the name already exist then it set the status that it is found and return 
     if(SearchGroup(name)){
       console.log("found");
       setFoundStatus(true);
@@ -83,7 +84,7 @@ const App = (props) => {
     setGroupStatus(true)
   }
   }
-
+  // Function to search whether the name already exist in the array or not
   const SearchGroup=(name)=>{
     var found=false;
     groupStore.some((entry)=>{
@@ -221,6 +222,7 @@ const App = (props) => {
                   {
                     groupStatus && <><h5>Group Created</h5></>
                   }
+                
                   {
                     foundStatus && <><h5>Group with the name {foundGroupName} already exist!</h5></>
                   }
