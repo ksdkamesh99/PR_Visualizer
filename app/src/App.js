@@ -12,11 +12,11 @@ const App = (props) => {
   const [showGroupedPRs, setShowGroupedPRs] = useState(data);
   const [datavisibility, setDataVisibility] = useState(true);
   const [groupName, setGroupName] = useState("");
-  
+  const [foundStatus,setFoundStatus]=useState(false);
+  const [foundGroupName,setFoundGroupName]=useState("");
   const [groupStatus,setGroupStatus] = useState(false)
   const [errorSelection,setErrorSelection] = useState(false)
   const [displayGroups,setDisplayGroups] = useState(false)
-
   const [totalMerged, setTotalMerged] = useState(3)
   const [totalClosed, setTotalClosed] = useState(3)
   const [totalOpen, setTotalOpen] = useState(4)
@@ -65,6 +65,15 @@ const App = (props) => {
     setShowGroupedPRs(false)
   };
   const createNewGroup=(name)=>{
+    if(SearchGroup(name)){
+      console.log("found");
+      setFoundStatus(true);
+      setGroupStatus(false);
+      setFoundGroupName(name);
+      return
+    }
+    else{
+    setFoundStatus(false)
     const config = {
       name:name,
       prList:[]
@@ -72,6 +81,17 @@ const App = (props) => {
     groupStore.push(config)
     console.log(groupStore)
     setGroupStatus(true)
+  }
+  }
+
+  const SearchGroup=(name)=>{
+    var found=false;
+    groupStore.some((entry)=>{
+      if(entry.name===name){
+        found=true;
+      }
+    });
+    return found;
   }
   console.log(Selection.length)
   var cleanResponse;
@@ -200,6 +220,9 @@ const App = (props) => {
                   </Button>{" "}
                   {
                     groupStatus && <><h5>Group Created</h5></>
+                  }
+                  {
+                    foundStatus && <><h5>Group with the name {foundGroupName} already exist!</h5></>
                   }
                 </Grid>
                 <Grid item xs={12} md={12} sm={12} lg={12}>
